@@ -60,7 +60,6 @@ func ex7() {
 		c = 15
 	)
 	fmt.Println(a, b, c)
-
 }
 
 func ex8() {
@@ -69,7 +68,6 @@ func ex8() {
 	fmt.Scanf("%f", &input)
 	output := input * 2
 	fmt.Println(output)
-
 }
 
 func main() {
