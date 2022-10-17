@@ -158,15 +158,56 @@ func ex10() {
 
 }
 
+func exercises() {
+
+	{ // how to acess an fourth element in an array or slice
+		x := [6]string{"a", "b", "c", "d", "f"}
+		for i := 0; i < len(x); i++ {
+			fmt.Println(x[i], i+1)
+		}
+		fmt.Println("Quador elemento: ", x[3])
+	}
+
+	{ // what x[2:5] outputs?
+		x := [6]string{"a", "b", "c", "d", "f"}
+		fmt.Println((x[2:5]))
+	}
+
+	{ //what is the size of the slice make([]int, 3 ,9)
+		x := make([]int, 3, 9)
+		x = append(x, 2, 3, 4, 5, 6, 3)
+		fmt.Println(len(x), x)
+
+	}
+
+	{ // Write a program that finds the greatest number from the list below
+		maxValue := 0
+		x := []int{
+			48, 96, 86, 68,
+			57, 82, 63, 70,
+			37, 34, 83, 27,
+			19, 97, 9, 17,
+		}
+
+		for _, value := range x {
+			if value > maxValue {
+				maxValue = value
+			}
+		}
+		fmt.Println(maxValue, " is the gresatest number in the list: ", x)
+	}
+}
+
 func main() {
-	ex1()
-	ex2()
-	ex3()
-	ex4()
-	ex5()
-	ex6()
-	ex7()
-	ex8()
-	ex9()
-	ex10()
+	// ex1()
+	// ex2()
+	// ex3()
+	// ex4()
+	// ex5()
+	// ex6()
+	// ex7()
+	// ex8()
+	// ex9()
+	// ex10()
+	exercises()
 }
