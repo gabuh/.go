@@ -98,6 +98,91 @@ func ex6() {
 	fmt.Println("Closure increment --> ", increment())
 }
 
+func makeEvenGenerator() func() uint {
+	i := uint(0)
+	return func() (ret uint) {
+		ret = i
+		i += 2
+		return
+	}
+}
+
+func ex7() {
+	nextEven := makeEvenGenerator()
+	fmt.Print("Even numbers: ", nextEven())
+	fmt.Print(" ", nextEven())
+	fmt.Print(" ", nextEven())
+	fmt.Println()
+}
+
+func factorial(x uint) uint {
+	if x == 0 {
+		return 1
+	}
+	return x * factorial(x-1)
+}
+
+/*
+1. x == 0? No, (x is 2)
+2. then calculate the factorial of x - 1
+	a. x == 0? No, (x is 1)
+		b. then calculate the factorial of x - 1
+			i. x == 0 ? Yes, return 1
+				c. return 1 * 1
+
+3. return 2 * 1
+*/
+func ex8() {
+	fmt.Println(" !8 = ", factorial(8))
+	fmt.Println(" !7 = ", factorial(7))
+}
+
+func ex9() {
+	first := func() {
+		fmt.Println("first")
+	}
+	second := func() {
+		fmt.Println("second")
+	}
+
+	defer second()
+	first()
+}
+
+func ex10() {
+	defer func() {
+		str := recover()
+		fmt.Println(str)
+	}()
+	panic("PANIC")
+
+}
+
+func ex11_f(x int) {
+	x = 0
+}
+func ex11_f2(xPtr *int) {
+	*xPtr = 0
+}
+
+func ex11() {
+	x := 5
+	ex11_f(x)
+	fmt.Println("func without pointer, it keeps x = 5: ", x) // x keeps == 5
+	ex11_f2(&x)
+	fmt.Println("func using pointer, it changes x to 0: ", x) // x is 0
+}
+
+func ex12_f(xPtr *int) {
+	*xPtr = 1
+}
+
+func ex12() { // using new
+	xPtr := new(int)
+	ex12_f(xPtr)
+	fmt.Println("pointer using new: ", *xPtr)
+}
+
 func main() {
 	ex1()
 	ex2()
@@ -105,5 +190,10 @@ func main() {
 	ex4()
 	ex5()
 	ex6()
-
+	ex7()
+	ex8()
+	ex9()
+	ex10()
+	ex11()
+	ex12()
 }
